@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .logout {
+            background-color: #d9534f;
+            margin-top: 10px;
+        }
+
+        .logout:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if session['username'] %}
+            <h1>Welcome, {{ session['username'] }}!</h1>
+            <p>Guess the word by entering letters one at a time. You have 6 tries to guess the word correctly.</p>
+            <form action="{{ url_for('new_game') }}" method="POST">
+                <button type="submit">Start a New Game</button>
+            </form>
+            <form action="{{ url_for('logout') }}" method="GET">
+                <button type="submit" class="logout">Logout</button>
+            </form>
+        {% else %}
+            <h1>Welcome to Hangman!</h1>
+            <p>Please log in to play the game.</p>
+            <a href="{{ url_for('login') }}">
+                <button type="button">Login</button>
+            </a>
+            <a href="{{ url_for('register') }}">
+                <button type="button" class="logout">Register</button>
+            </a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+}
+
+/* Container styling */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h1 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+/* Paragraph styling */
+p {
+    color: #555;
+    font-size: 18px;
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for letters set (guess buttons) */
+.letters-set form {
+    display: inline;
+}
+
+.letters-set button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.letters-set button:hover {
+    background-color: #0056b3;
+}
+
+.letters-set button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Input styling */
+input[type="text"] {
+    width: 30px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #888;
+}

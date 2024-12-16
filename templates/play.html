@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+
+        <!-- Display Hangman Image -->
+        <div>
+            <img src="{{ url_for('static', filename=tries) }}" alt="Hangman Image" />
+        </div>
+
+        <!-- Display the Word -->
+        <p>
+            Guess the word: <strong>{{ display_word }}</strong>
+        </p>
+
+        <!-- Hint Button -->
+        {% if not game_over and not game_won %}
+        <form action="{{ url_for('hint') }}" method="POST" style="margin-bottom: 15px;">
+            <button type="submit" class="hint-btn">Use Hint</button>
+        </form>
+        {% endif %}
+
+        <!-- Game Over or Game Won Scenarios -->
+        {% if game_over %}
+            <h2>Game Over! The word was: "{{ nameToGuess }}"</h2>
+            <a href="{{ url_for('index') }}">
+                <button>Back to Home</button>
+            </a>
+        {% elif game_won %}
+            <h2>Congratulations! You guessed the word!</h2>
+            <a href="{{ url_for('index') }}">
+                <button>Back to Home</button>
+            </a>
+        {% else %}
+            <!-- Display Letters to Guess -->
+            <div class="letters-set">
+                {% for letter in lettersSet %}
+                    <form action="{{ url_for('guess') }}" method="POST" style="display: inline;">
+                        <button type="submit" name="letter" value="{{ letter }}" class="letter-btn">
+                            {{ letter }}
+                        </button>
+                    </form>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #d9534f;
+        }
+
+        p {
+            color: #555;
+        }
+
+        strong {
+            color: #333;
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .letter-btn {
+            font-size: 14px;
+            padding: 5px 10px;
+            margin: 5px;
+            background-color: #007BFF;
+            border-radius: 5px;
+        }
+
+        .letter-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .hint-btn {
+            font-size: 14px;
+            padding: 10px 15px;
+            margin: 10px;
+            background-color: #FFC107;
+            border-radius: 5px;
+            color: black;
+            border: none;
+        }
+
+        .hint-btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</body>
+</html>
